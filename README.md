@@ -471,7 +471,14 @@ yum -y install rundeck
 
 Configure rundeck:
 
-1. The file WEB-INF/web.xml (if CentOS /var/lib/rundeck/exp/webapp/WEB-INF/web.xml) inside the war contents must be modified to remove the <auth-constraint> element. This disables the behavior which causes the Container to trigger its authentication mechanism when a user browses to a Rundeck page requiring authorizaton
+1. The file WEB-INF/web.xml (if CentOS /var/lib/rundeck/exp/webapp/WEB-INF/web.xml) inside the war contents must be modified to remove the `auth-constraint` element. 
+```
+<auth-constraint>
+    <role-name>*</role-name>
+</auth-constraint>
+```
+This disables the behavior which causes the Container to trigger its authentication mechanism when a user browses to a Rundeck page requiring authorizaton.
+
 2. enable preauthenticated, add the following lines to /etc/rundeck/rundeck-config.properties:
 ```
 # Pre Auth mode settings
